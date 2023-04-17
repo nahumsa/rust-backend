@@ -1,0 +1,25 @@
+openapi: 3.0.0
+info:
+  title: Admin Service Availability API
+  version: 1.0.0
+  description: API to check the availability of a service
+
+paths:
+  /health_check:
+    get:
+      summary: Check service availability
+      description: Returns the availability status of the service
+      responses:
+        '204':
+          description: The API is OK.
+
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: A description of the error
