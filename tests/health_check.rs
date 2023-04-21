@@ -16,8 +16,7 @@ async fn test_health_check() {
 }
 
 fn start_app() -> String {
-    let listener = TcpListener::bind("127.0.0.1:0")
-        .expect("Failed to bind a random port");
+    let listener = TcpListener::bind("127.0.0.1:0").expect("Failed to bind a random port");
 
     let port = listener.local_addr().unwrap().port();
 
