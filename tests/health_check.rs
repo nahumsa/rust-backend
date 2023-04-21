@@ -24,7 +24,7 @@ async fn test_subscribe_return_200_for_valid_form_data() {
     let body = "name=nahum%20sa&email=nahumsa%40email.com";
 
     let response = client
-        .post(&format!("{}/subscription", &address))
+        .post(&format!("{}/subscriptions", &address))
         .header("Content-Type", "application/x-www-form-urlencoded")
         .body(body)
         .send()
@@ -47,7 +47,7 @@ async fn test_subscribe_return_400_when_data_is_missing() {
 
     for (invalid_body, error_message) in test_cases {
         let response = client
-            .post(&format!("{}/subscription", &address))
+            .post(&format!("{}/subscriptions", &address))
             .header("Content-Type", "application/x-www-form-urlencoded")
             .body(invalid_body)
             .send()
@@ -60,7 +60,7 @@ async fn test_subscribe_return_400_when_data_is_missing() {
             "The API did not fail with 400 Bad Request when the payload was {}",
             error_message
         );
-    };
+    }
 }
 
 fn start_app() -> String {
