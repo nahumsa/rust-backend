@@ -12,3 +12,6 @@ fmt:
 check_style:
 	cargo clippy -- -D warnings
 	cargo fmt -- --check
+
+create_subscription_migration:
+	sqlx migrate add create_subscriptions_table
