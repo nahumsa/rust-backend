@@ -5,7 +5,7 @@ pub mod startup;
 use std::net::TcpListener;
 
 use actix_web::dev::Server;
-use actix_web::{web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{web, App, HttpServer};
 use routes::{health_check, subscribe};
 
 pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
