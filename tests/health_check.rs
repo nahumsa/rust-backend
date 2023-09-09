@@ -29,7 +29,7 @@ async fn start_app() -> TestApp {
 
     let listener = TcpListener::bind("127.0.0.1:0").expect("Failed to bind a random port");
     let port = listener.local_addr().unwrap().port();
-    let address = format!("http://127.0.1:{}", port);
+    let address = format!("http://127.0.1:{port}");
 
     let mut configuration = get_configuration().expect("Failed to read configuration.");
     configuration.database.database_name = Uuid::new_v4().to_string();
@@ -134,8 +134,7 @@ async fn test_subscribe_returns_400_when_fields_are_present_but_invalid() {
         assert_eq!(
             400,
             response.status().as_u16(),
-            "The API did not return a 400 Bad Request when the payload was {}",
-            description
+            "The API did not return a 400 Bad Request when the payload was {description}"
         );
     }
 }
@@ -163,8 +162,7 @@ async fn test_subscribe_return_400_when_data_is_missing() {
         assert_eq!(
             400,
             response.status().as_u16(),
-            "The API did not fail with 400 Bad Request when the payload was {}",
-            error_message
+            "The API did not fail with 400 Bad Request when the payload was {error_message}"
         );
     }
 }

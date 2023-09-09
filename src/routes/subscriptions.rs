@@ -1,5 +1,5 @@
 use crate::domain::{NewSubscriber, SubscriberEmail, SubscriberName};
-use actix_web::{web, HttpResponse, Responder};
+use actix_web::{web, HttpResponse};
 use chrono::Utc;
 use sqlx::PgPool;
 use uuid::Uuid;
@@ -28,7 +28,7 @@ impl TryFrom<FormData> for NewSubscriber {
         subscriber_name = %form.name
     )
 )]
-pub async fn subscribe(form: web::Form<FormData>, pool: web::Data<PgPool>) -> impl Responder {
+pub async fn subscribe(form: web::Form<FormData>, pool: web::Data<PgPool>) -> HttpResponse {
     let new_subscriber = match form.0.try_into() {
         Ok(form) => form,
         Err(_) => return HttpResponse::BadRequest().finish(),
