@@ -112,7 +112,7 @@ async fn test_subscribe_return_200_for_valid_form_data() {
 }
 
 #[tokio::test]
-async fn test_subscribe_return_200_when_fields_are_present_but_empty() {
+async fn test_subscribe_returns_400_when_fields_are_present_but_invalid() {
     // setup
     let app: TestApp = start_app().await;
 
@@ -132,9 +132,9 @@ async fn test_subscribe_return_200_when_fields_are_present_but_empty() {
             .expect("Failed to execute request");
 
         assert_eq!(
-            200,
+            400,
             response.status().as_u16(),
-            "The API did not return a 200 OK when the payload was {}",
+            "The API did not return a 400 Bad Request when the payload was {}",
             description
         );
     }
